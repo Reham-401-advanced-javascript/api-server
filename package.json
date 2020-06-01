@@ -67,6 +67,7 @@
     "onetime": "^5.1.0",
     "path-is-absolute": "^1.0.1",
     "punycode": "^2.1.1",
-    "safer-buffer": "^2.1.2"
+    "safer-buffer": "^2.1.2",
+    "supertest": "^4.0.2"
   }
 }
