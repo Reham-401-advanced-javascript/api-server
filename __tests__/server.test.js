@@ -3,20 +3,12 @@ const { server } = require('../lib/server.js');
 const supertest = require('supertest');
 const mockRequest = supertest(server);
 
-// 404 err
+// 200 
 describe('sever', () => {
-  // 200 
 
   it('should respond with 200 on /categories', () => {
     return mockRequest.get('/categories').then((results) => {
       expect(results.status).toBe(200);
-    });
-  });
-
-  // timestamp test 
-  it('should respond a timeStamp ', () => {
-    return mockRequest.get('/timeStamp').then(results => {
-      expect(results.headers.date).toBeDefined();
     });
   });
 
