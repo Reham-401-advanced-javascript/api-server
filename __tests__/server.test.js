@@ -5,35 +5,13 @@ const mockRequest = supertest(server);
 
 // 404 err
 describe('sever', () => {
-  it('should respond with 404 on an invalid route', () => {
-    return mockRequest.get('/401-class').then((results) => {
-      expect(results.status).toBe(404);
-    });
-  });
-
-  // 404 err
-  it('should respond with 404 on an invalid method', () => {
-    return mockRequest.patch('/categories').then((results) => {
-      expect(results.status).toBe(404);
-    });
-  });
-
-  // 200 err
+  // 200 
 
   it('should respond with 200 on /categories', () => {
     return mockRequest.get('/categories').then((results) => {
-      // expect(results.status).toBe(200);
+      expect(results.status).toBe(200);
     });
   });
-
-  //500 err
-
-  it('should respond with 500 Error ', () => {
-    return mockRequest
-      .get('/server error').then(results => {
-        expect(results.status).toBe(500);
-      }).catch(e => console.error(e));
-  }); 
 
   // timestamp test 
   it('should respond a timeStamp ', () => {
