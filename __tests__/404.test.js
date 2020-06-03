@@ -1,7 +1,7 @@
 'use strict';
 const { server } = require('../lib/server.js');
-const supertest = require('supertest');
-const mockRequest = supertest(server);
+const supergoose = require('@code-fellows/supergoose');
+const mockRequest = supergoose(server);
 
 // 404 err
 describe('sever', () => {

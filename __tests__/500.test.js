@@ -1,7 +1,7 @@
 'use strict';
 const { server } = require('../lib/server.js');
-const supertest = require('supertest');
-const mockRequest = supertest(server);
+const supergoose = require('@code-fellows/supergoose');
+const mockRequest = supergoose(server);
 
 //500 err
 describe('sever', () => {
@@ -18,4 +18,12 @@ describe('sever', () => {
       }).catch(e => console.error(e));
   }); 
 
+  it('should respond to a 500 err to wrong path /api/v1/categories/1', () => {
+    return mockRequest.get('/api/v1/categories/1').then(results => {
+      console.log('bbbbbbbbbbbbbbbbb',results.body);
+
+      expect(results.status).toBe(500);
+
+    });
+  });
 });

@@ -1,29 +1,31 @@
 'use strict';
 const { server } = require('../lib/server.js');
-const supertest = require('supertest');
-const mockRequest = supertest(server);
+const supergoose = require('@code-fellows/supergoose');
+const mockRequest = supergoose(server);
+
 
 // 200 
 describe('sever', () => {
 
-  it('should respond with 200 on /categories', () => {
-    return mockRequest.get('/categories').then((results) => {
+  it('should respond with 200 on /api/v1/categories', () => {
+    return mockRequest.get('/api/v1/categories').then((results) => {
       expect(results.status).toBe(200);
     });
+    
   });
 
   //-----------------------------------------------------------------------------------
   // products rout 
   //-----------------------------------------------------------------------------------
 
-  it('should respond to a get request to /products', () => {
+  it('should respond to a get request to /api/v1/products', () => {
     let obj = { category: 'accessories', name: 'reham', display_name: 'lab7', description: 'cover this wide headband' };
-    return mockRequest.post('/products')
+    return mockRequest.post('/api/v1/products')
       .send(obj)
       .then(data => {
         // console.log('aaaaaaaaaa data from post',data.body);
         
-        return mockRequest.get('/products').then(results => {
+        return mockRequest.get('/api/v1/products').then(results => {
           
           Object.keys(obj).forEach((key) => {
             expect(results.body.results[0][key]).toEqual(obj[key]);
@@ -35,16 +37,29 @@ describe('sever', () => {
   });
 
   
-  it('should respond to a get request to /products/1', () => {
-    return mockRequest.get('/products/1').then(results => {
-      expect(results.status).toBe(200);
-    });
+  it('should respond to a get request to /api/v1/products/id', () => {
+    let obj = { category: 'accessories', name: 'reham', display_name: 'lab7', description: 'cover this wide headband' };
+    return mockRequest.post('/api/v1/products')
+      .send(obj)
+      .then(data => {
+        // console.log('cccccccccccccccc',data.body);
+       
+        return mockRequest.get(`/api/v1/products/${data.body._id}`).then(results => {
+          // console.log('ccccccccccccccccvvvvvvvvvv',results.body);
+          
+          Object.keys(obj).forEach((key) => {
+            expect(results.body[0][key]).toEqual(obj[key]);
+          });
+          
+        });
+      });
+    
   });
 
 
-  it('should respond to a post request to /products', () => {
+  it('should respond to a post request to /api/v1/products', () => {
     let obj = { category: 'accessories', name: 'reham', display_name: 'lab7', description: 'cover this wide headband' };
-    return mockRequest.post('/products')
+    return mockRequest.post('/api/v1/products')
       .send(obj)
       .then(results => {
         // console.log('result ',results.body);
@@ -54,18 +69,17 @@ describe('sever', () => {
       });
   });
 
-  it('should respond to a put request to /products/1', () => {
+  it('should respond to a put request to /api/v1/products/id', () => {
     let obj = { category: 'accessories', name: 'reham', display_name: 'lab7', description: 'cover this wide headband' };
-    return mockRequest.post('/products')
+    return mockRequest.post('/api/v1/products')
       .send(obj)
       .then(data => {
-        // console.log('data of body',data.body);
-        let updateObj = { category: 'accessories', name: 'qusai', display_name: 'lab-7', description: 'cover this wide headband',id: data.body.id };
-        return mockRequest.put(`/products/${data.body.id}`)
-          .send(updateObj)
+        let updateObj = { category: 'accessories', name: 'qusai', display_name: 'lab-07', description: 'cover this wide headband' };
+        // console.log('xxxxxxxxxxxxxxxxxxxxxx post',data.body);
+        return mockRequest.put(`/api/v1/products/${data.body._id}`)
+          .send(updateObj )
           .then(results => {
-            // console.log('data ooooooooooooooooof body',results.body);
-
+          
             Object.keys(updateObj).forEach((key) => {
               expect(results.body[key]).toEqual(updateObj[key]);
             });
@@ -76,26 +90,25 @@ describe('sever', () => {
   
  
 
-  it('should respond to a delete request to /products/1', () => {
+  it('should respond to a delete request to /api/v1/products/id', () => {
     let obj = { category: 'accessories', name: 'reham', display_name: 'lab7', description: 'cover this wide headband' };
-    return mockRequest.post('/products')
+    return mockRequest.post('/api/v1/products')
       .send(obj)
       .then(data => {
-        // console.log('aaaaaaaaaa data from post',data.body);
-        
-        return mockRequest.get('/products').then(getdata => {
-          return mockRequest.delete(`/products/${getdata.body.results[0].id}`)
-            .then(results => {
-              // console.log('sssssssss',results.body);
-          
-              Object.keys(obj).forEach((key) => {
-                expect(results.body).toEqual({action: 'deleted successfully'});
+      // console.log('aaaaaaaaaa data from post',data.body);
+
+        return mockRequest.delete(`/api/v1/products/${data.body._id}`)
+          .send(obj)
+          .then((getdata) => {
+
+            return mockRequest.get(`/api/v1/products/${data.body._id}`)
+              .then(results => {
+              // console.log('aaaaaaaaaa data from geeeeeeeeeeet',results.body);
+                expect(results.body[0]).toBe();
               });
-              // console.log('dddddddd',results.body.results[0]);
-              // expect(results.status).toBe(200);
-            });
-        });
+          });
       });
+      
   });
 
   //-----------------------------------------------------------------------------------
@@ -103,12 +116,12 @@ describe('sever', () => {
   //-----------------------------------------------------------------------------------
  
 
-  it('should respond to a get request to /categories', () => {
+  it('should respond to a get request to /api/v1/categories', () => {
     let obj = { name: 'accessories', display_name: 'accessories', description: 'big collection of modern accessories' };
-    return mockRequest.post('/categories')
+    return mockRequest.post('/api/v1/categories')
       .send(obj)
       .then(data => {    
-        return mockRequest.get('/categories').then(results => {
+        return mockRequest.get('/api/v1/categories').then(results => {
           Object.keys(obj).forEach((key) => {
             expect(results.body.results[0][key]).toEqual(obj[key]);
           });
@@ -117,16 +130,29 @@ describe('sever', () => {
   });
 
   
-  it('should respond to a get request to /categories/1', () => {
-    return mockRequest.get('/categories/1').then(results => {
-      expect(results.status).toBe(200);
-    });
+  it('should respond to a get request to /api/v1/categories/id', () => {
+    let obj = { name: 'accessories', display_name: 'accessories', description: 'big collection of modern accessories' };
+
+    return mockRequest.post('/api/v1/categories')
+      .send(obj)
+      .then(data => {
+      // console.log('cccccccccccccccc',data.body);
+     
+        return mockRequest.get(`/api/v1/categories/${data.body._id}`).then(results => {
+        // console.log('ccccccccccccccccvvvvvvvvvv',results.body);
+        
+          Object.keys(obj).forEach((key) => {
+            expect(results.body[0][key]).toEqual(obj[key]);
+          });
+        
+        });
+      });
+    
   });
 
-
-  it('should respond to a post request to /categories', () => {
+  it('should respond to a post request to /api/v1/categories', () => {
     let obj = { name: 'accessories', display_name: 'accessories', description: 'big collection of modern accessories' };
-    return mockRequest.post('/categories')
+    return mockRequest.post('/api/v1/categories')
       .send(obj)
       .then(results => {
         Object.keys(obj).forEach((key) => {
@@ -135,40 +161,41 @@ describe('sever', () => {
       });
   });
 
-  it('should respond to a put request to /categories/1', () => {
+  it('should respond to a put request to /api/v1/categories/id', () => {
     let obj = { name: 'accessories', display_name: 'accessories', description: 'big collection of modern accessories' };
-    return mockRequest.post('/categories')
+    return mockRequest.post('/api/v1/categories')
       .send(obj)
       .then(data => {
-        let updateObj = {  name: 'bags', display_name: 'bags', description: 'big collection of modern bags',id: data.body.id };
-        return mockRequest.put(`/categories/${data.body.id}`)
-          .send(updateObj)
+        let updateObj = { name: 'bags', display_name: 'bags', description: 'big collection of modern bags' };
+        // console.log('xxxxxxxxxxxxxxxxxxxxxx post',data.body);
+        return mockRequest.put(`/api/v1/categories/${data.body._id}`)
+          .send(updateObj )
           .then(results => {
+            
             Object.keys(updateObj).forEach((key) => {
               expect(results.body[key]).toEqual(updateObj[key]);
             });
           });
       });
   });
-
-  
  
-
-  it('should respond to a delete request to /categories/1', () => {
+  it('should respond to a delete request to /api/v1/categories/1', () => {
     let obj = { name: 'accessories', display_name: 'accessories', description: 'big collection of modern accessories' };
-    return mockRequest.post('/categories')
+    return mockRequest.post('/api/v1/categories')
       .send(obj)
       .then(data => {
         // console.log('aaaaaaaaaa data from post',data.body);
-        
-        return mockRequest.get('/categories').then(getdata => {
-          return mockRequest.delete(`/categories/${getdata.body.results[0].id}`)
-            .then(results => {
-              Object.keys(obj).forEach((key) => {
-                expect(results.body).toEqual({action: 'deleted successfully'});
+
+        return mockRequest.delete(`/api/v1/categories/${data.body._id}`)
+          .send(obj)
+          .then((getdata) => {
+
+            return mockRequest.get(`/api/v1/categories/${data.body._id}`)
+              .then(results => {
+                // console.log('aaaaaaaaaa data from geeeeeeeeeeet',results.body);
+                expect(results.body[0]).toBe();
               });
-            });
-        });
+          });
       });
   });
 
