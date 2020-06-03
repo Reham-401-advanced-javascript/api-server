@@ -23,8 +23,8 @@ function getModel(req, res, next) {
 router.post('/:model', postHandler);
 router.get('/:model', getAllHandler);
 router.get('/:model/:id', getOneHandler);
-router.get('/:model/:id', updateHandler);
-router.get('/:model/:id', deleteHandler);
+router.put('/:model/:id', updateHandler);
+router.delete('/:model/:id', deleteHandler);
 
 function postHandler(req, res, next) {
   req.model

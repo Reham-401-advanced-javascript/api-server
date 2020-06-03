@@ -196,5 +196,21 @@ describe('sever', () => {
       });
   });
 
+  // ---------------------------------------------
+  // err
+  // -------------------------------------------
+  it('should respond 404 to /api/v1/books', () => {
+    let obj = { name: 'accessories', display_name: 'accessories', description: 'big collection of modern accessories' };
+    return mockRequest.post('/api/v1/books')
+      .send(obj)
+      .then(data => {    
+        return mockRequest.get('/api/v1/books').then(results => {
+          expect(data.status).toBe(500);
+          
+        });
+      });
+  });
+
   
 });
+

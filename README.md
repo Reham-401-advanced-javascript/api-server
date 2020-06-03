@@ -1,9 +1,11 @@
-# LAB - Class 8 : Express Routing & Connected API
+# LAB - Class 9: API Server
 ### Author: Reham Omar AL-Sobh
 
  ## Links and Resources
  - [submission PR/lab-07 ](https://github.com/Reham-401-advanced-javascript/api-server/pull/4)
  - [submission PR/lab-08 ](https://github.com/Reham-401-advanced-javascript/api-server/pull/6)
+ - [submission PR/lab-09 ](https://github.com/Reham-401-advanced-javascript/api-server/pull/7)
+
  - [swager]( https://app.swaggerhub.com/apis/Reham-Omar/api-lab6/0.1#/default)
 
  ## Documentaion
@@ -16,6 +18,9 @@
    `update: 3000/api/v1/products/id`
  - DELETE an existing record in a database, using the DELETE with id parameter 
    `delete: 3000/api/v1/products/id`
+
+ - Create a single router module that will work for any data model, rather than having separate router modules for every data module.
+ - Create a single “mongo” collection class that every data model can extend from, keeping the CRUD logic for our models  very DRY
  
  ## Setup
 
@@ -41,4 +46,4 @@
 
 ## UML
 
-[UML Diagrame ](assest/lab-08.jpg)
+[UML Diagrame ](assest/lab-09.jpg)
