@@ -87,9 +87,6 @@ describe('sever', () => {
       });
   });
 
-  
- 
-
   it('should respond to a delete request to /api/v1/products/id', () => {
     let obj = { category: 'accessories', name: 'reham', display_name: 'lab7', description: 'cover this wide headband' };
     return mockRequest.post('/api/v1/products')
