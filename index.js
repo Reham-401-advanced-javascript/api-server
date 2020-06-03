@@ -8,4 +8,4 @@ mongoose.connect(process.env.MONGODB_URI, {
   useUnifiedTopology: true,
 });
   
-server.start(process.env.MONGODB_URI);
+server.start();
