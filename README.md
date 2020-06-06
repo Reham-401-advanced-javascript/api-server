@@ -1,18 +1,18 @@
-# LAB - Class 9: API Server
+# LAB - Class 10: API Server
 ### Author: Reham Omar AL-Sobh
 
  ## Links and Resources
  - [submission PR/lab-07 ](https://github.com/Reham-401-advanced-javascript/api-server/pull/4)
  - [submission PR/lab-08 ](https://github.com/Reham-401-advanced-javascript/api-server/pull/6)
  - [submission PR/lab-09 ](https://github.com/Reham-401-advanced-javascript/api-server/pull/7)
- - [submission PR/lab-10 ](https://github.com/Reham-401-advanced-javascript/api-server/pull/7)
+ - [submission PR/lab-10 ](https://github.com/Reham-401-advanced-javascript/api-server/pull/10)
 
- - [jsdoc]()
+ - [jsdoc](https://reham-api.herokuapp.com/docs/)
  - [ci/cd](https://github.com/Reham-401-advanced-javascript/api-server/pull/9/checks?check_run_id=745803182)
  ## Documentaion
 
  - [swager]( https://app.swaggerhub.com/apis/Reham-Omar/api-lab6/0.1#/default)
- 
+
  - CREATE a new record in a database, using the POST method 
    `post: 3000/api/v1/products`
  - READ the list of all records in a database, using the GET method without specifies id or have aspecific record by entering it's id .
