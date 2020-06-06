@@ -10,7 +10,8 @@
   "scripts": {
     "start": "node index.js",
     "test": "jest --coverage ",
-    "lint": "eslint '**/*.js'"
+    "lint": "eslint '**/*.js'",
+    "jsdoc": "jsdoc -c ./docs/config/jsdoc.config.json"
   },
   "repository": {
     "type": "git",
@@ -60,6 +61,7 @@
     "is-fullwidth-code-point": "^3.0.0",
     "isexe": "^2.0.0",
     "js-tokens": "^4.0.0",
+    "jsdoc": "^3.6.4",
     "json-schema-traverse": "^0.4.1",
     "lodash": "^4.17.15",
     "mimic-fn": "^2.1.0",
