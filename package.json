@@ -10,7 +10,9 @@
   "scripts": {
     "start": "node index.js",
     "test": "jest --coverage ",
-    "lint": "eslint '**/*.js'"
+    "lint": "eslint '**/*.js'",
+    "stylelint": "stylelint ’**/*.scss’",
+    "jsdoc": "jsdoc -c ./docs/config/jsdoc.config.json"
   },
   "repository": {
     "type": "git",
@@ -24,7 +26,8 @@
   },
   "homepage": "https://github.com/Reham-401-advanced-javascript/api-server#readme",
   "devDependencies": {
-    "eslint": "^7.1.0",
+    "eslint": "^7.2.0",
+    "eslint-plugin-html": "^6.0.2",
     "jest": "^26.0.1"
   },
   "dependencies": {
@@ -60,7 +63,9 @@
     "is-fullwidth-code-point": "^3.0.0",
     "isexe": "^2.0.0",
     "js-tokens": "^4.0.0",
+    "jsdoc": "^3.6.4",
     "json-schema-traverse": "^0.4.1",
+    "lint": "^0.7.0",
     "lodash": "^4.17.15",
     "mimic-fn": "^2.1.0",
     "minimatch": "^3.0.4",
