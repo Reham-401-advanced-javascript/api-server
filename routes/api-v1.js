@@ -4,8 +4,7 @@
  * @module Route
  */
 const express = require('express');
-const Categories = require('../lib/models/categories/categories-model.js');
-const products = require('../lib/models/products/products-model.js');
+const getModel = require('../lib/models/params.js');
 const router = express.Router();
 router.param('model', getModel);
 
@@ -16,22 +15,7 @@ router.param('model', getModel);
  * @param {Function} next -middleware next()
  */
 
-function getModel(req, res, next) {
-  const model = req.params.model;
-  switch (model) {
-  case 'categories':
-    req.model = Categories;
-    next();
-    return;
-  case 'products':
-    req.model = products;
-    next();
-    return;
-  default:
-    next('invalid model');
-    return;
-  }
-}
+
 router.post('/:model', postHandler);
 router.get('/:model', getAllHandler);
 router.get('/:model/:id', getOneHandler);
