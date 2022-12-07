@@ -65,7 +65,7 @@
     "js-tokens": "^4.0.0",
     "jsdoc": "^3.6.4",
     "json-schema-traverse": "^0.4.1",
-    "lint": "^0.7.0",
+    "lint": "^0.8.8",
     "lodash": "^4.17.15",
     "mimic-fn": "^2.1.0",
     "minimatch": "^3.0.4",
